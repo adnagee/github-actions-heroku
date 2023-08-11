@@ -10,7 +10,7 @@ env:
   HEROKU_APP_NAME: github-actions-heroku-dev
 
 jobs:
-  unit-tests and deploy to heroku-dev:
+  test and deploy to dev:
     runs-on: ubuntu-latest
 
     steps:
