@@ -1,16 +1,18 @@
 name: Production workflow
 
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - develop
+      - production
 
 env:
   HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-  HEROKU_APP_NAME: github-actions-heroku-dev
+  HEROKU_APP_NAME: github-actions-heroku-deploy
 
 jobs:
-  test-and-deploy-to-dev:
+  ui-test-and-deploy-to-prod:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +27,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run UI tests
-        run: npm test
+      - name: Run Selenium UI tests
+        run: node .src/ui_tests/test_calculator_sel.js
 
       - name: Build the app
         run: npm run build
@@ -35,5 +37,5 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "github-actions-heroku-dev"
+          heroku_app_name: "github-actions-heroku-deploy"
           heroku_email: "adnagee@gmail.com"
