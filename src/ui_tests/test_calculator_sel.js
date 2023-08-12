@@ -5,9 +5,10 @@ const { strictEqual } = require("assert");
 // require("chromedriver");
 const options = new chrome.Options();
 options.addArguments(
+  "--no-sandbox",
   "--headless",
   "--disable-gpu",
-  "--no-sandbox",
+
   "--disable-dev-shm-usage"
 );
 options.setChromeBinaryPath(process.env.CHROME_BIN);
