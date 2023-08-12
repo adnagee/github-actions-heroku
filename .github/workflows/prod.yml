@@ -1,9 +1,10 @@
 name: Production workflow
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
+    # pull_request:
+    #   types:
+    #     - closed
     branches:
       - production
 
