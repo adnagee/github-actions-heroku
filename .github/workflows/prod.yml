@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Chrome
-      - uses: browser-actions/setup-chrome@v1
+        uses: browser-actions/setup-chrome@v1
 
       - name: run chrome
-      - run: chrome --version
+        run: chrome --version
 
       - name: Set up Node.js v 17
         uses: actions/setup-node@v1
