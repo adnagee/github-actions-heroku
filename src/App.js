@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { square } from "./helpers";
 
 function App() {
+  const [num, setNum] = useState("");
+  const [result, setResult] = useState("");
+
+  const handleNumChange = (e) => {
+    setNum(e.target.value);
+  };
+
+  const handleCalculate = () => {
+    const n1 = parseFloat(num);
+    setResult(square(n1));
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Simple Calculator</h1>
+      <div>
+        <label htmlFor="num">Number</label>
+        <input
+          id="num"
+          type="text"
+          value={num}
+          onChange={handleNumChange}
+          placeholder="Number"
+        />
+        <br></br>
+
+        <button onClick={handleCalculate}>Calculate Square</button>
+      </div>
+      <h2 id="result">{`Result: ${result}`}</h2>
     </div>
   );
 }

@@ -1,0 +1,41 @@
+name: Production workflow
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - production
+
+env:
+  HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+  HEROKU_APP_NAME: github-actions-heroku-deploy
+
+jobs:
+  ui-test-and-deploy-to-prod:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js v 17
+        uses: actions/setup-node@v1
+        with:
+          node-version: "17"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Selenium UI tests
+        run: node .src/ui_tests/test_calculator_sel.js
+
+      - name: Build the app
+        run: npm run build
+
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.12
+        with:
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: "github-actions-heroku-deploy"
+          heroku_email: "adnagee@gmail.com"
