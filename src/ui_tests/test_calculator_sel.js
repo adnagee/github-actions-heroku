@@ -11,12 +11,23 @@ options.addArguments(
   "--disable-dev-shm-usage"
 );
 options.setChromeBinaryPath(process.env.CHROME_BIN);
-
+console.log(process.env.CHROME_BIN);
 (async function testCalculatorAdd() {
   const driver = await new Builder()
     .forBrowser("chrome")
     .setChromeOptions(options)
     .build();
+
+  driver
+    .manage()
+    .logs()
+    .get("browser")
+    .then((entries) => {
+      entries.forEach((entry) => {
+        console.log(`[Chrome Log] ${entry.level.name}: ${entry.message}`);
+      });
+    });
+
   try {
     await driver.get("http://localhost:3000"); // Replace with the actual URL of your React app
 
