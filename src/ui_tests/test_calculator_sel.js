@@ -1,10 +1,16 @@
 // add one selenium test
 const { Builder, By, Key, until } = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
 const { strictEqual } = require("assert");
-require("chromedriver");
+// require("chromedriver");
+const options = new chrome.Options();
+options.setChromeBinaryPath(process.env.CHROME_BIN);
 
 (async function testCalculatorAdd() {
-  const driver = await new Builder().forBrowser("chrome").build();
+  const driver = await new Builder()
+    .forBrowser("chrome")
+    .setChromeOptions(options)
+    .build();
   try {
     await driver.get("http://localhost:3000"); // Replace with the actual URL of your React app
 
