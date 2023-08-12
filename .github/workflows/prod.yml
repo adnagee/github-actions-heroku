@@ -22,7 +22,7 @@ jobs:
       - name: Set up Chrome
       - uses: browser-actions/setup-chrome@v1
 
-      - name run chrome
+      - name: run chrome
       - run: chrome --version
 
       - name: Set up Node.js v 17
