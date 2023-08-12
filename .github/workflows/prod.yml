@@ -24,8 +24,7 @@ jobs:
         uses: browser-actions/setup-chrome@v1
 
       - name: Set CHROME_BIN environment variable
-        env:
-          CHROME_BIN: ${{which google-chrome }}
+        run: echo "CHROME_BIN=$(which google-chrome)" >> "$GITHUB_ENV"
 
       - name: run chrome
         run: chrome --version
