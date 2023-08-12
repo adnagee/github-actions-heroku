@@ -19,6 +19,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Chrome
+        uses: actions/setup-chrome@v1
+
       - name: Set up Node.js v 17
         uses: actions/setup-node@v1
         with:
