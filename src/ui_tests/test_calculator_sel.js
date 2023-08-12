@@ -4,6 +4,12 @@ const chrome = require("selenium-webdriver/chrome");
 const { strictEqual } = require("assert");
 // require("chromedriver");
 const options = new chrome.Options();
+options.addArguments(
+  "--headless",
+  "--disable-gpu",
+  "--no-sandbox",
+  "--disable-dev-shm-usage"
+);
 options.setChromeBinaryPath(process.env.CHROME_BIN);
 
 (async function testCalculatorAdd() {
