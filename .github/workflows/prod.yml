@@ -28,7 +28,7 @@ jobs:
         run: npm install
 
       - name: Run Selenium UI tests
-        run: node .src/ui_tests/test_calculator_sel.js
+        run: node src/ui_tests/test_calculator_sel.js
 
       - name: Build the app
         run: npm run build
