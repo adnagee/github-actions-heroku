@@ -27,7 +27,7 @@ jobs:
         id: setup-chrome
       - run: |
           echo Installllled the chromium version: ${{ steps.setup-chrome.outputs.chrome-version }}
-          ${{ steps.setup-chrome.outputs.chrome-path }} --version
+          --version
 
       # - name: Set CHROME_BIN environment variable
       #   run: echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
