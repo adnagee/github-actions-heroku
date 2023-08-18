@@ -18,15 +18,15 @@ console.log(process.env.CHROME_BIN);
     .setChromeOptions(options)
     .build();
 
-  driver
-    .manage()
-    .logs()
-    .get("browser")
-    .then((entries) => {
-      entries.forEach((entry) => {
-        console.log(`[Chrome Log] ${entry.level.name}: ${entry.message}`);
-      });
-    });
+  // driver
+  //   .manage()
+  //   .logs()
+  //   .get("browser")
+  //   .then((entries) => {
+  //     entries.forEach((entry) => {
+  //       console.log(`[Chrome Log] ${entry.level.name}: ${entry.message}`);
+  //     });
+  //   });
 
   // try {
   //   await driver.get("https://github-actions-heroku-dev-105582a53ed4.herokuapp.com/"); // Replace with the actual URL of your React app
