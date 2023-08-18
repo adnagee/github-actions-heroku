@@ -20,14 +20,21 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up Chromedriver
+        # uses: browser-actions/setup-chrome@v1
+        # with:
+          # chrome-version: stable
+        id: setup-chromedriver
+      # - run: |
+          # echo Installllled the chromium version: ${{ steps.setup-chrome.outputs.chrome-path }} --version
+        - run: cd /tmp/ && wget
+        https://chromedriver.storage.googleapis.com/2.37/chromedriver_linux64.zip && unzip chromedriver_linux64.zip && sudo mv chromedriver /usr/bin/chromedriver && chromedriver --version
+
       - name: Set up Chrome
         uses: browser-actions/setup-chrome@v1
         with:
           chrome-version: stable
-        id: setup-chrome
-      - run: |
-          echo Installllled the chromium version: ${{ steps.setup-chrome.outputs.chrome-path }} --version
-
+          
       - name: Set CHROME_BIN environment variable
         run: echo "CHROME_BIN=$(which chrome)" >> $GITHUB_ENV
 
