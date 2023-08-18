@@ -29,11 +29,11 @@ jobs:
           echo Installllled the chromium version: ${{ steps.setup-chrome.outputs.chrome-version }}
           ${{ steps.setup-chrome.outputs.chrome-path }} --version
 
-      - name: Set CHROME_BIN environment variable
-        run: echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
+      # - name: Set CHROME_BIN environment variable
+      #   run: echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
 
       - name: run chrome
-        run: chrome --version
+        run: google-chrome --version && which google-chrome
 
       - name: Set up Node.js v 17
         uses: actions/setup-node@v1
