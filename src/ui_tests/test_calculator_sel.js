@@ -11,7 +11,7 @@ options.addArguments(
   "--disable-dev-shm-usage"
 );
 options.setChromeBinaryPath(process.env.CHROME_BIN);
-console.log(process.env.CHROME_BIN);
+console.log("The path is currenty " + process.env.CHROME_BIN);
 (async function testCalculatorAdd() {
   const driver = await new Builder()
     .forBrowser("chrome")
