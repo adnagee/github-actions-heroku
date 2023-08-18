@@ -1,9 +1,7 @@
 name: Production workflow
 
 on:
-  pull_request:
-    types:
-      - closed
+  push:
     branches:
       - production
 
@@ -14,24 +12,26 @@ env:
 jobs:
   ui-test-and-deploy-to-prod:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        firefox:
+          ["84.0", "latest-beta", "latest-devedition", "latest-esr", "latest"]
+    name: Firefox ${{ matrix.firefox }} sample
     steps:
+      - name: Setup firefox
+        id: setup-firefox
+        uses: browser-actions/setup-firefox@v1
+        with:
+          firefox-version: ${{ matrix.firefox }}
+      - run: |
+          echo Installed firefox versions: ${{ steps.setup-firefox.outputs.firefox-version }}
+          firefox --version
+
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-        id: setup-chrome
-      - run: |
-          echo Installllled the chromium version: ${{ steps.setup-chrome.outputs.chrome-path }} --version
-
-      # - name: Set CHROME_BIN environment variable
-      #   run: echo "CHROME_BIN=$(which google-chrome)" >> $GITHUB_ENV
-
-      - name: run chrome
-        run: chrome --version && which chrome
+      - name: run firefox
+        run: firefox --version && which firefox
 
       - name: Set up Node.js v 17
         uses: actions/setup-node@v1
